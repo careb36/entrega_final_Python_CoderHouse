@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Iniciar sesion
+{% endblock %}
+
+{% block contenido_que_cambia %} 
+{% for message in messages %}
+
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+           {{ message }}
+    </div>
+
+{% endfor %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <center>
+                <h1 class="display-4 my-3">INICIAR SESION</h1>
+                <table>
+    
+        {{form.as_table}}
+    
+    </table>
+    
+    <p><input type="submit" value="Ingresar"></p>
+    
+    </form>
+    <p style="color:red;">{{error}}</p>
+
+</center>
+    </div>
+    </div>
+</div>
+{% endblock %}

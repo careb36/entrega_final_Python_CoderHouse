@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
+{% block contenido_que_cambia %} 
+
+<div class="container"> 
+  <h1 class="display-4 my-3 text-center">PRODUCTOS</h1>
+  <div class="row">
+
+{%for product in products%}
+
+  <div class="col col-lg-4">
+<div class="card" style="width: 18rem">
+  {%if product.image%}
+    <img class="card-img-top" src="{{product.image.url}}" width="25%" height="25%" alt="Card image cap" />
+  {%endif%}
+
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">Precio: {{product.price}}</p>  
+  
+    {% if is_delete%}
+      <a href="{% url 'Delete_product' product.id %}" class="btn btn-secondary">Borrar</a>
+    {% endif %}
+
+    {% if is_update%}
+    <a href="{% url 'update_product' product.id %}" class="btn btn-primary">Actualizar</a>
+  {% endif %}
+
+  <a href="{% url 'detail_product' product.id %}" class="btn btn-success">Detalle</a>
+  </div>
+</div>
+</div>
+{%endfor%} 
+</div>
+</div>
+{% endblock %}
