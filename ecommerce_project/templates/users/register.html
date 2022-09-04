@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block titulo %} Resgistra tu usuario {% endblock %}
+{% block contenido_que_cambia %}
+{%debug%}
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="display-4 my-3">Crea un usuario</h3>
+        <table>
+          {{form.as_table}}
+        </table>
+
+        <p><input type="submit" value="Registrarme" /></p>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

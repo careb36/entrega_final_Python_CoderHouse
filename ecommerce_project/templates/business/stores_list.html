@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
+{% block contenido_que_cambia %} 
+<div class="container-fluid my-4">
+  <center>
+    <h1 class="display-4 my-3">LOCALES</h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 my-1">
+{%for stores in stores%}
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="https://images.unsplash.com/photo-1625763689440-74d0f74d604d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" width="25%" height="25%" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{stores.name}}</h5>
+    <p class="card-text">Dirección: {{stores.address}}</p>
+    <p class="card-text">Teléfono: {{stores.phone_number}}</p>
+    <p class="card-text">Horario: {{stores.schedules}}</p>
+    <a href="https://www.google.com/maps/place/Hotel+NH+Buenos+Aires+9+de+Julio/@-34.8962706,-56.1923705,15z/data=!4m6!1m2!2m1!1s9+de+julio+120!3m2!1s0x95bccacfeeb9d43b:0xe3a4cede9ca734f7!15sCg45IGRlIGp1bGlvIDEyMFoQIg45IGRlIGp1bGlvIDEyMJIBBWhvdGVs" class="btn btn-primary">Mapa</a>
+  </div>
+</div>
+</div>
+</center>
+</div>
+{%endfor%} 
+{% endblock %}
