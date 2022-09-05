@@ -1,27 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
-# Create your models here.
+
+def custom_upload_to(instance, filename):
+    old_instance = Profile.objects.get(pk=instance.pk)
+    print('oldInstanceeeee', old_instance)
+    old_instance.imagen.delete()
+    return 'profiles/' + filename
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
     name= models.CharField(max_length=40)
-    surname= models.CharField(max_length=40 )
-    birth_date= models.DateField()
-    address= models.CharField(max_length=40 )
+    surname= models.CharField(max_length=40)
+    imagen = models.ImageField(upload_to=custom_upload_to, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    url = models.URLField(max_length=200, null=True, blank=True)
+    class Meta:
+        ordering = ['user__username']
 
-    def __str__(self):
-        return self.user.username
-    
-    #avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-
-# creo una clase para implementar los roles de admin y de usuario final para visualizar el CRUD
-
-'''
-class User(AbstractUser):
-    ADMINISTRATOR = 1
-    FINALUSER = 2
-    ROLE_CHOICES = (ADMINISTRATOR, 'administrator', FINALUSER, 'finaluser')
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
-'''
+@receiver(post_save, sender=User)
+def ensure_profile_exists(sender, instance, **kwargs):
+    if kwargs.get('created', False):
+        Profile.objects.get_or_create(user=instance)
+        print("Se acaba de crear un usuario y su perfil enlazado")
