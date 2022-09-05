@@ -1,12 +1,11 @@
 {% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
 {% block contenido_que_cambia %} 
-<div class="container-fluid my-4">
-  <center>
-    <h1 class="display-4 my-3">LOCALES</h1>
+<div class="container">
+  <h1 class="display-4 my-3 text-center">LOCALES</h1>
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 my-1">
 {%for stores in stores%}
-<div class="card" style="width: 18rem">
+<div class="col col-lg-4">
+  <div class="card mt-3" style="width: 18rem">
   <img class="card-img-top" src="https://images.unsplash.com/photo-1625763689440-74d0f74d604d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" width="25%" height="25%" alt="Card image cap" />
   <div class="card-body">
     <h5 class="card-title">{{stores.name}}</h5>
@@ -17,7 +16,7 @@
   </div>
 </div>
 </div>
-</center>
-</div>
 {%endfor%} 
 {% endblock %}
+</div>
+</div>

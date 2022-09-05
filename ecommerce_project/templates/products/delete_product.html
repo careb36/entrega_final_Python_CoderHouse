@@ -14,9 +14,7 @@
       <p class="card-text">Stock: {{product.stock}}</p>
       <p class="card-text">Descripción: {{product.description}}</p>
       <p class="card-text">Tamaño: {{product.size}}</p>
-      <p>prueba</p>
-      <a href="{% url 'Delete_product' product.id %}" class="btn btn-primary"
-        >Borrar</a>
+      <a href="{% url 'Delete_product' product.id %}" class="btn btn-btn-danger">Borrar</a>
     </div>
   </div>
   {%endfor%} {% endblock %}

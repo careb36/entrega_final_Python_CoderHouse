@@ -40,11 +40,6 @@
             <a class="nav-link" href="/business/menu/" 
               >Empresa<span class="sr-only">(current)</span></a
             >
-          </li>
-          <a class="nav-link" href="/business/about/" 
-              >About us<span class="sr-only">(current)</span></a
-            >
-          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -75,28 +70,33 @@
               {%endif%}
             </div>
           </li>
-
+          <li>
+          <a class="nav-link" href="/business/about/" 
+            >About us<span class="sr-only">(current)</span></a
+          >
+          </li>
+        </li>
+      </ul>
+        <ul class="navbar-nav ml-auto">
           {% if request.user.is_authenticated %}
-
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/logout/" >Cerrar Sesion<span class="sr-only">(current)</span></a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/profile/" >Ver Perfil<span class="sr-only">(current)</span></a>
-        </li>
-
-        {% else %}
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/login/" > Iniciar Sesion<span class="sr-only">(current)</span></a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/register/" > Registrarme<span class="sr-only">(current)</span></a>
-        </li>
-
-        {% endif %}
-        </ul>
+            <li class="nav-item active">
+             <a class="nav-link" href="/users/logout/" >Cerrar Sesion<span class="sr-only">(current)</span></a>
+            </li>
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="/users/profile/" >Ver Perfil<span class="sr-only">(current)</span></a>
+            </li>
+            
+            {% else %}
+              <li class="nav-item active">
+                <a class="nav-link" href="/users/login/" > Iniciar Sesion<span class="sr-only">(current)</span></a>
+              </li>
+            
+              <li class="nav-item active">
+                <a class="nav-link" href="/users/register/" > Registrarme<span class="sr-only">(current)</span></a>
+              </li>
+              {% endif %}
+            </ul>
         <form
           class="form-inline my-2 my-lg-0"
           action="{% url 'search_product' %}"

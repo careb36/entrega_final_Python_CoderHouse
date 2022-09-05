@@ -8,10 +8,10 @@
       <form method="post">
         {% csrf_token %}
       
-        <p class="display-4 text fw-bold">¿Está seguro que desea borrar el producto {{ object.name }}?</p>
+        <p class="display-4 text fw-bold text-center text-block">¿Está seguro que desea borrar el producto {{ object.name }}?</p>
       <div class="text-center">
-        <input class="d_flex btn btn-primary text-center" onClick="javascript:history.go(-1)" value="Cancelar"/>
-        <input class="d_flex btn btn-danger text-center" type="submit" value="Confirmar"/>       
+        <input class="d_flex btn btn-primary text-center btn-block" onClick="javascript:history.go(-1)" value="Cancelar"/>
+        <input class="d_flex btn btn-danger text-center btn-block" type="submit" value="Confirmar"/>       
       </div>
       </form>
     </div>
