@@ -6,7 +6,8 @@ This module contains views for user authentication, registration, and profile ma
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.views import LogoutView
 from users.forms import User_registration_form
 from django.contrib import messages
 from django.views.generic import TemplateView
@@ -139,3 +140,17 @@ class Update_profile(UpdateView):
         # Retrieve the object to be edited
         profile, _ = Profile.objects.get_or_create(user=self.request.user)
         return profile
+
+
+class CustomLogoutView(LogoutView):
+    """
+    Custom logout view that adds a success message before logging out.
+
+    Extends Django's LogoutView to provide user feedback and proper redirect.
+    """
+    next_page = reverse_lazy('index')
+
+    def dispatch(self, request, *args, **kwargs):
+        # Add success message before logout
+        messages.success(request, 'You have been successfully logged out. Thank you for visiting EcommerceHub!')
+        return super().dispatch(request, *args, **kwargs)
