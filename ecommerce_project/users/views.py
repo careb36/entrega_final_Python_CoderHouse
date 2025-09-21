@@ -49,6 +49,8 @@ def login_request(request):
 
     elif request.method == 'GET':
         form = AuthenticationForm()
+        form.fields['username'].widget.attrs['class'] = 'form-control'
+        form.fields['password'].widget.attrs['class'] = 'form-control'
         return render(request, 'users/login.html', {'form': form})
 
 def register(request):
