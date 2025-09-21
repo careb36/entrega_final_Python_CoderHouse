@@ -58,7 +58,7 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
     """View for creating a new message."""
     model = Message
     form_class = MessageForm
-    template_name = 'messages/message_form.html'
+    template_name = 'messages/compose.html'
     success_url = reverse_lazy('message_inbox')
 
     def get_form_kwargs(self):
@@ -76,7 +76,7 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
 class MessageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """View for deleting a message."""
     model = Message
-    template_name = 'messages/message_confirm_delete.html'
+    template_name = 'messages/delete_confirm.html'
     success_url = reverse_lazy('message_inbox')
 
     def test_func(self):

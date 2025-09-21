@@ -12,8 +12,8 @@
       <p>{{ message.body }}</p>
     </div>
     <div class="card-footer">
-      <a href="{% url 'delete_message' message.id %}" class="btn btn-danger">Delete</a>
-      <a href="{% url 'compose_message' %}" class="btn btn-primary">Reply</a>
+      <a href="{% url 'message_delete' message.id %}" class="btn btn-danger">Delete</a>
+      <a href="{% url 'message_compose' %}" class="btn btn-primary">Reply</a>
     </div>
   </div>
 </div>
