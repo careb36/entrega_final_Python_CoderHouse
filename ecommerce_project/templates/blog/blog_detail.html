@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ blog.title }}{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <article>
+        <header class="mb-4">
+          <h1 class="display-4">{{ blog.title }}</h1>
+          <p class="text-muted">By {{ blog.author }} on {{ blog.created|date:"F j, Y" }}</p>
+          {% if blog.category %}
+          <p class="text-muted">Category: {{ blog.category.name }}</p>
+          {% endif %}
+          {% if blog.tags.all %}
+          <p class="text-muted">Tags: {% for tag in blog.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+          {% endif %}
+        </header>
+        {% if blog.image %}
+        <img src="{{ blog.image.url }}" class="img-fluid mb-4" alt="{{ blog.title }}">
+        {% endif %}
+        <div class="blog-content">
+          {{ blog.content|linebreaks }}
+        </div>
+      </article>
+      <div class="mt-4">
+        <a href="{% url 'blog_list' %}" class="btn btn-secondary">Back to Blog</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

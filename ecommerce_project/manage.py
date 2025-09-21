@@ -1,5 +1,15 @@
 #!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
+"""
+Django management script for the ecommerce project.
+
+This script serves as the entry point for Django's command-line interface,
+providing utilities for administrative tasks such as running the development
+server, creating and applying database migrations, managing applications,
+and other Django management commands.
+
+Usage: python manage.py <command> [options]
+For a list of available commands, run: python manage.py help
+"""
 import os
 import sys
 

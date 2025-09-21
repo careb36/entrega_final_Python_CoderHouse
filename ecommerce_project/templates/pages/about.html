@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block titulo %}About Us{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="display-4 text-center mb-4">Sobre Nosotros</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{% static 'images/carolina.jpeg' %}" class="card-img-top" alt="Carolina">
+        <div class="card-body">
+          <h5 class="card-title">Carolina</h5>
+          <p class="card-text">Desarrolladora apasionada por la tecnología y el diseño web. Especializada en Django y Bootstrap.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{% static 'images/catalina.jpg' %}" class="card-img-top" alt="Catalina">
+        <div class="card-body">
+          <h5 class="card-title">Catalina</h5>
+          <p class="card-text">Experta en desarrollo backend y frontend, con experiencia en proyectos de e-commerce y blogs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <p class="lead text-center">Somos un equipo dedicado a crear soluciones web innovadoras y responsivas.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "email": "admin@example.com",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": true,
+      "date_joined": "2023-01-01T00:00:00Z",
+      "password": "pbkdf2_sha256$260000$adminpassword"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Technology",
+      "slug": "technology"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Django",
+      "slug": "django"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Sample Blog Post",
+      "content": "This is a sample blog post content.",
+      "author": 1,
+      "published": true,
+      "slug": "sample-blog-post",
+      "image": null,
+      "category": 1,
+      "tags": [1]
+    }
+  }
+]

@@ -1,3 +1,10 @@
+"""
+Django settings for ecommerce project.
+
+This module contains all the configuration for the Django project,
+including database settings, installed apps, middleware, and security configurations.
+"""
+
 import os
 from pathlib import Path
 
@@ -6,15 +13,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q8mcf5lxvicccxuy52^t+gmj0rb+1o+eq1qz67-n^ds(2z)yh*'
+SECRET_KEY = '=!bkd@0-897mkgnjg(+9qvjs48$6cg7t-h1+_u1lx%(o&rif=t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # Update with your actual domain in production
+
+CSRF_TRUSTED_ORIGINS = ['https://yourdomain.com', 'https://www.yourdomain.com']  # Update with your actual domain in production
 
 
 # Application definition
@@ -26,10 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products',
-    'business',	
+    'blog',
+    'comments',
     'users',
     'home',
+    'pages',
+    'user_messages',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +77,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -75,7 +88,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -94,27 +107,49 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
+# https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-USE_TZ = True 
 
 USE_I18N = True
 
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 
+# CKEditor settings
+# Configuration for the CKEditor rich text editor used in admin and forms
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table'],
+            ['Source'],
+        ],
+        'height': 300,
+        'width': '100%',
+    },
+}
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/users/login/'
+
+# Security settings
+# Additional security configurations to protect against common web vulnerabilities
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_SSL_REDIRECT = False  # Set to True in production with HTTPS
+X_FRAME_OPTIONS = 'DENY'

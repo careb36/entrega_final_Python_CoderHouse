@@ -1,3 +1,9 @@
+"""
+User views for the ecommerce project.
+
+This module contains views for user authentication, registration, and profile management.
+"""
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
@@ -14,9 +20,19 @@ from django.urls import reverse_lazy
 from .forms import SetPasswordForm
 
 
-# LOGIN
-
 def login_request(request):
+    """
+    Handle user login requests.
+
+    Processes GET requests by displaying the login form and POST requests by
+    authenticating the user and redirecting to the home page on success.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered login page or home page.
+    """
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -35,10 +51,19 @@ def login_request(request):
         form = AuthenticationForm()
         return render(request, 'users/login.html', {'form': form})
 
-# REGISTRO
-
-
 def register(request):
+    """
+    Handle user registration requests.
+
+    Processes GET requests by displaying the registration form and POST requests by
+    validating and saving the new user, then redirecting to the login page.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered registration page or redirect to login.
+    """
     if request.method == 'POST':
         form = User_registration_form(request.POST)
         if form.is_valid():
@@ -57,8 +82,13 @@ def register(request):
         return render(request, 'users/register.html', {'form': form})
 
 
-# PERFIL
+@method_decorator(login_required, name='dispatch')
 class View_profile(TemplateView):
+    """
+    View for displaying the user's profile.
+
+    Requires login and renders the profile template with the user's profile data.
+    """
     model = Profile
     template_name = 'users/profile.html'
 
@@ -73,6 +103,11 @@ class View_profile(TemplateView):
         return context
 @method_decorator(login_required, name='dispatch')
 class UpdatePasswordProfile(UpdateView):
+    """
+    View for updating the user's password.
+
+    Uses a custom SetPasswordForm and redirects to the profile view on success.
+    """
     model = User
     fields = ['password']
     success_url = reverse_lazy('view-profile')
@@ -89,11 +124,16 @@ class UpdatePasswordProfile(UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class Update_profile(UpdateView):
+    """
+    View for updating the user's profile information.
+
+    Uses ProfileForm and creates a profile if it doesn't exist.
+    """
     form_class = ProfileForm
     template_name = 'users/update_profile.html'
     success_url = reverse_lazy('view-profile')
 
     def get_object(self):
-        # recuperar el objeto que se va editar
+        # Retrieve the object to be edited
         profile, _ = Profile.objects.get_or_create(user=self.request.user)
         return profile

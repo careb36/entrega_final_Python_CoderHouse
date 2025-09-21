@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %}Compose Message{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+  <h1 class="mb-4">Compose Message</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{ form.recipient.id_for_label }}" class="form-label">{{ form.recipient.label }}</label>
+      {{ form.recipient }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.subject.id_for_label }}" class="form-label">{{ form.subject.label }}</label>
+      {{ form.subject }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.body.id_for_label }}" class="form-label">{{ form.body.label }}</label>
+      {{ form.body }}
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+</div>
+
+{% endblock %}
