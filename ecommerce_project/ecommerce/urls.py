@@ -7,6 +7,7 @@ routing requests to appropriate app views and serving static/media files.
 
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -21,4 +22,8 @@ urlpatterns = [
     path('messages/', include('user_messages.urls')),  # User messaging system
     path('accounts/', include('users.urls')),  # User authentication and profiles
     path('ckeditor/', include('ckeditor_uploader.urls')),  # CKEditor file uploads
+    # Redirects for common URLs
+    path('about/', RedirectView.as_view(url='/pages/about/'), name='about_redirect'),
+    path('pages/', RedirectView.as_view(url='/pages/blog/'), name='pages_redirect'),
+    path('messages/', RedirectView.as_view(url='/messages/inbox/'), name='message_index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Serve media files during development
